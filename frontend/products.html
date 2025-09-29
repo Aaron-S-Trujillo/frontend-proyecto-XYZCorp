@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>Productos</title>
+<link href="css/styles.css" rel="stylesheet"></head>
+<body>
+  <header class="site-header"><div class="container"><h1 class="logo">Tienda Virtual</h1>
+  <nav><a href="index.html">Inicio</a><a href="products.html">Productos</a><a href="carrito.html">Carrito (<span id="cart-count">0</span>)</a><a href="login.html" id="login-link">Login</a></nav></div></header>
+  <main class="container"><h2>Catálogo</h2><div id="products" class="products-grid"></div></main>
+  <script src="js/products.js"></script>
+  <script>const cart = JSON.parse(localStorage.getItem('cart')||'[]');document.getElementById('cart-count').innerText = cart.reduce((s,i)=>s+i.cantidad,0);</script>
+</body></html>
