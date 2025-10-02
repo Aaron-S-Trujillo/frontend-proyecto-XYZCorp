@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html lang="es">
-<script src="index.js"></script>
 <head>
-  <meta charset="UTF-8">
-  <title>Tienda Virtual</title>
-  <style>
-    body { font-family: Arial, sans-serif; }
-    .producto {
-      border: 1px solid #ccc;
-      padding: 10px;
-      margin: 10px;
-      border-radius: 5px;
-      width: 200px;
-      display: inline-block;
-    }
-  </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tienda Virtual - Inicio</title>
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 <body>
-  <h1>Productos disponibles</h1>
-  <div id="productos"></div>
+  <header class="site-header">
+    <div class="container">
+      <h1 class="logo">XYZ Corp</h1>
+      <nav>
+        <a href="index.html">Inicio</a>
+        <a href="products.html">Productos</a>
+        <a href="carrito.html">Carrito (<span id="cart-count">0</span>)</a>
+        <a href="login.html" id="login-link">Login</a>
+      </nav>
+    </div>
+  </header>
 
+  <main class="container">
+    <h2>Productos Destacados</h2>
+    <div id="products" class="products-grid"></div>
+  </main>
+
+  <script src="js/products.js"></script>
   <script>
-    // Aquí conectamos con tu backend en Node
-    fetch("http://localhost:3000/api/products")
-      .then(res => res.json())
-      .then(data => {
-        const contenedor = document.getElementById("productos");
-        contenedor.innerHTML = ""; // limpiar antes de pintar
-
-        data.forEach(p => {
-          const div = document.createElement("div");
-          div.classList.add("producto");
-          div.innerHTML = `
-            <h3>${p.nombre}</h3>
-            <p>${p.descripcion}</p>
-            <p><strong>$${p.precio}</strong></p>
-          `;
-          contenedor.appendChild(div);
-        });
-      })
-      .catch(err => console.error("Error cargando productos:", err));
+    // actualiza contador del carrito
+    const cart = JSON.parse(localStorage.getItem('cart')||'[]');
+    document.getElementById('cart-count').innerText = cart.reduce((s,i)=>s+i.cantidad,0);
   </script>
 </body>
 </html>

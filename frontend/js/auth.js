@@ -1,5 +1,7 @@
-const API_AUTH = 'http://localhost:3000/api/auth';
-// login form
+// /frontend/js/auth.js
+const API_AUTH = '/api/auth';
+
+// login
 const loginForm = document.getElementById('login-form');
 if (loginForm) {
   loginForm.addEventListener('submit', async (e)=>{
@@ -20,7 +22,7 @@ if (loginForm) {
   });
 }
 
-// register form
+// register
 const regForm = document.getElementById('register-form');
 if (regForm) {
   regForm.addEventListener('submit', async (e)=>{

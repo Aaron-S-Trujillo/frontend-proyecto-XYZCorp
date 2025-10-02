@@ -1,12 +1,11 @@
+// /backend/routes/auth.js
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/db');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
-// Register
 router.post('/register', async (req, res) => {
   const { nombre, email, password } = req.body;
   if (!nombre || !email || !password) return res.status(400).json({ message: 'Datos incompletos' });
@@ -22,7 +21,6 @@ router.post('/register', async (req, res) => {
   }
 });
 
-// Login
 router.post('/login', async (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) return res.status(400).json({ message: 'Datos incompletos' });
@@ -41,3 +39,4 @@ router.post('/login', async (req, res) => {
 });
 
 module.exports = router;
+s

@@ -1,10 +1,18 @@
-# Tienda Virtual - Paquete completo
+# 🛒 Tienda Virtual - Proyecto XYZCorp
 
-Contenido del paquete (listo para usar, falta importar la base de datos en MySQL Workbench):
+Este es un proyecto de **tienda virtual completa** desarrollado como parte de las evidencias del SENA en la formación **Tecnólogo en Análisis y Desarrollo de Software**.
 
-- /backend : servidor Node.js (Express) con rutas de auth, products, orders.
-- /frontend : páginas HTML, CSS y JS (index, login, register, carrito).
-- /database : db_schema.sql y seed.sql para crear y poblar la base de datos.
+---
+
+## 🚀 Tecnologías utilizadas
+- **Frontend**: React (JavaScript, HTML, CSS)
+- **Backend**: Node.js con Express
+- **Base de datos**: MySQL
+- **Control de versiones**: Git y GitHub
+
+---
+
+## 📂 Estructura del proyecto
 - Instrucciones rápidas:
   1. Importa `database/db_schema.sql` en MySQL Workbench.
   2. Importa `database/seed.sql` (opcional, contiene datos de prueba).

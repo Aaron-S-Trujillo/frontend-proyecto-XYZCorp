@@ -1,6 +1,6 @@
+// /backend/middleware/authMiddleware.js
 const jwt = require('jsonwebtoken');
-const dotenv = require('dotenv');
-dotenv.config();
+require('dotenv').config();
 
 function authenticateToken(req, res, next) {
   const authHeader = req.headers['authorization'];
@@ -13,4 +13,15 @@ function authenticateToken(req, res, next) {
   });
 }
 
-module.exports = { authenticateToken };
+function optionalAuth(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1];
+  if (!token) { req.user = null; return next(); }
+  jwt.verify(token, process.env.JWT_SECRET || 'TuSecretoJWTAqui', (err, user) => {
+    if (err) { req.user = null; return next(); }
+    req.user = user;
+    next();
+  });
+}
+
+module.exports = { authenticateToken, optionalAuth };

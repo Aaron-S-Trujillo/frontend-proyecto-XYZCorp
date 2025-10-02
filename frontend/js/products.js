@@ -1,4 +1,5 @@
-const API = 'http://localhost:3000/api/products';
+// /frontend/js/products.js
+const API = '/api/products';
 
 async function loadProducts() {
   try {
@@ -20,21 +21,20 @@ async function loadProducts() {
     });
     document.querySelectorAll('.button').forEach(btn => btn.addEventListener('click', addToCart));
   } catch (err) {
-    console.error(err);
+    console.error('Error cargando productos:', err);
   }
 }
 
 function addToCart(e) {
   const id = Number(e.currentTarget.dataset.id);
-  // find product from DOM card (simpler: fetch product details)
-  fetch(`${API}/${id}`).then(r=>r.json()).then(p=>{
+  fetch(`/api/products/${id}`).then(r=>r.json()).then(p=>{
     let cart = JSON.parse(localStorage.getItem('cart')||'[]');
     const existing = cart.find(i=>i.producto_id===p.id);
     if (existing) existing.cantidad += 1; else cart.push({producto_id: p.id, nombre: p.nombre, cantidad:1, precio_unitario: p.precio});
     localStorage.setItem('cart', JSON.stringify(cart));
     document.getElementById('cart-count').innerText = cart.reduce((s,i)=>s+i.cantidad,0);
     alert('Producto agregado al carrito');
-  });
+  }).catch(err=>console.error(err));
 }
 
 document.addEventListener('DOMContentLoaded', loadProducts);
